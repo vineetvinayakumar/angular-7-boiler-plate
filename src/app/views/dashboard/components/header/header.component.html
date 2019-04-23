@@ -1,0 +1,67 @@
+<header class="main-header">
+    <mat-toolbar>
+        <mat-toolbar-row>
+            <button class="sidenav-toggle mat-button"
+                    mat-icon-button
+                    *ngIf="!showLinks"
+                    (click)="showSidenav()">
+                <mat-icon class="mat-icon material-icons"
+                          role="img"
+                          aria-hidden="true">
+                    menu
+                </mat-icon>
+            </button>
+
+            <div class="horizontal-space"></div>
+
+            <a class="app-logo"
+               routerLink="/summary">
+                Angular Dashboard
+            </a>
+
+            <div class="remaining-space"></div>
+
+            <div class="action-links"
+                 *ngIf="showLinks">
+
+                <mat-nav-list class="navigation-links">
+                    <mat-list-item class="navigation-link"
+                                   *ngFor="let item of navigationItems"
+                                   routerLinkActive="navigation-link--active"
+                                   [routerLink]="item.url">
+                        {{ item.name }}
+                    </mat-list-item>
+                </mat-nav-list>
+
+            <!-- <div class="action-links"
+                *ngIf="showLinks">
+                <a class="navigation-link"
+                   mat-button
+                   *ngFor="let item of navigationItems"
+                   routerLinkActive="navigation-link--active"
+                   [routerLink]="item.url">
+                    {{ item.name }}
+                </a> -->
+
+                <div class="horizontal-space"></div>
+
+                <button class="user-actions"
+                        mat-button
+                        [matMenuTriggerFor]="userMenu">
+                    <span class="username">{{ username }}</span>
+                    <div class="horizontal-space"></div>
+                    <mat-icon>expand_more</mat-icon>
+
+                    <mat-menu #userMenu="matMenu">
+                        <button mat-menu-item
+                                (click)="logout()">
+                            Logout
+                        </button>
+                    </mat-menu>
+                </button>
+
+            </div>
+
+        </mat-toolbar-row>
+    </mat-toolbar>
+</header>

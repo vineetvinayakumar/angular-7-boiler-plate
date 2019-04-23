@@ -1,0 +1,41 @@
+:host {
+    z-index: 2;
+}
+
+.action-bar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    // justify-content: space-between;
+    // align-items: center;
+    z-index: 1;
+}
+
+.date-time-range__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.from-to__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.last-updated {
+    flex-grow: 1;
+    text-align: right;
+
+    h5 {
+        margin-bottom: 0;
+    }
+
+    span {
+        text-emphasis: shadow;
+    }
+}
+
+.getting-data__progress-bar {
+    >ng-progress {
+        z-index: 1;
+    }
+}

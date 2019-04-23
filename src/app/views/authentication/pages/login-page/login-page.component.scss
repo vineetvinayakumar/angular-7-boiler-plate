@@ -1,0 +1,113 @@
+@import '~bootstrap/scss/bootstrap-grid.scss';
+
+:host {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 600px;
+}
+
+
+
+.login {
+    background-color: #ffffff;
+    --login-wrapper-border-radius: 10px;
+    max-width: 450px;
+    display: flex;
+    border-radius: var(--login-wrapper-border-radius);
+    transform-origin: top center;
+    margin: 2rem 2rem 8rem 2rem;
+
+    @include media-breakpoint-down(sm) {
+        padding: 1rem;
+        flex-direction: column;
+    }
+}
+
+.login-header {
+    background-color: #ffffff !important;
+    border-right: 1px solid #efefef;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--login-wrapper-border-radius) 0 0 var(--login-wrapper-border-radius);
+    flex: 1;
+
+    @include media-breakpoint-down(sm) {
+        border-radius: var(--login-wrapper-border-radius) var(--login-wrapper-border-radius) 0 0;
+    }
+}
+
+.login-horizontal-separator {
+    padding-bottom: 1rem;
+    display: none;
+
+    @include media-breakpoint-down(sm) {
+        display: block;
+    }
+}
+
+.login-logo {
+    flex: 1;
+    height: 6rem;
+    width: 6rem;
+
+    @include media-breakpoint-down(sm) {
+        padding: 0;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+.login-form {
+    flex: 2;
+    padding: 1rem;
+    border-radius: 0 var(--login-wrapper-border-radius) var(--login-wrapper-border-radius) 0;
+
+    @include media-breakpoint-down(sm) {
+        padding: 0rem;
+        border-radius: 0 0 var(--login-wrapper-border-radius) var(--login-wrapper-border-radius);
+    }
+}
+
+.login-form__field {
+    width: 100%;
+}
+
+.submit-btn {
+    margin: 1rem 0 0;
+    display: flex;
+
+    button {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        border-radius: 50px;
+        transition: all 0.15s ease-in-out;
+
+        &:hover:not(:disabled),
+        &:focus:not(:disabled) {
+            transform: translateY(-2px);
+            border: 1px solid transparent;
+        }
+
+        &:active {
+            box-shadow: none;
+            transform: translateY(0);
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+        }
+    }
+}
+
+.btn-login{
+  background-color: #E30922 !important;
+}

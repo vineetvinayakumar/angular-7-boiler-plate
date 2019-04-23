@@ -1,0 +1,27 @@
+<a class="user-info">
+    <img class="user-image"
+         src="/assets/images/angular.svg"
+         alt="Angular Logo">
+    <span class="user-name">
+        {{ sidenavData.username }}
+    </span>
+</a>
+<div class="action-links">
+    <mat-nav-list class="navigation-links">
+        <mat-list-item class="navigation-link"
+                       *ngFor="let item of sidenavData.navigationItems"
+                       [class.navigation-link--active]="activeRouteUrl === item.url"
+                       (click)="changeRoute(item.url)">
+            <mat-icon mat-list-icon>{{ item.icon }}</mat-icon>
+            <a mat-line>{{ item.name }}</a>
+        </mat-list-item>
+    </mat-nav-list>
+
+    <div class="vertical-space"></div>
+
+    <button class="logout-button"
+            mat-raised-button
+            (click)="logout()">
+        Logout
+    </button>
+</div>

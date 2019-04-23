@@ -1,0 +1,22 @@
+<span class="mat-form-field-like">Show</span>
+
+<div class="horizontal-space2"></div>
+
+<mat-form-field class="details-grid-length no-mat-form-field-bottom">
+    <mat-select [panelClass]="'details-grid-length__panel'"
+        [value]="initialPageSize"
+        (selectionChange)="onSelectionChange($event.value)">
+
+        <mat-option *ngFor="let page of pageSizes"
+            [value]="page"
+            [class.selected]="page === initialPageSize"
+            [disabled]="page === initialPageSize">
+
+            {{ page }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+
+<div class="horizontal-space2"></div>
+
+<span class="mat-form-field-like">Records</span>

@@ -1,0 +1,308 @@
+@import '~bootstrap/scss/bootstrap';
+@import '~ag-grid-community/dist/styles/ag-grid.css';
+@import '~ag-grid-community/dist/styles/ag-theme-material.css';
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500');
+
+@import "styles/theme";
+@import "styles/variables";
+@import "styles/functions";
+@import "styles/typography";
+@import "styles/mixins";
+
+
+:root {}
+
+
+html {
+    height: 100%;
+
+    /**
+     * to remove scroll bar when side nav is shown
+     */
+     .side-nav-overlay__panel {
+         @at-root .cdk-global-scrollblock {
+            /** remove overflow-y: scroll */
+           overflow-y: hidden;
+        }
+    }
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    max-width: 100vw;
+    font-family: Roboto, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    overflow-x: hidden;
+    background-image: url('/assets/images/login-bg-new.png');
+    background-color: #F3F2F3;
+    background-position: center;
+}
+
+// TODO: remove outline introduced by other css libraries
+* {
+
+    &:hover,
+    &:active,
+    &:focus {
+        outline: none !important;
+    }
+}
+
+// resetting css introduced by user agent stylesheet
+button {
+    padding: 0;
+}
+
+
+// css for overriding yellowing of text fields on autocomplete of chrome browser
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus,
+input:-internal-autofill-previewed,
+input:-internal-autofill-selected,
+textarea:-internal-autofill-previewed,
+textarea:-internal-autofill-selected,
+select:-internal-autofill-previewed,
+select:-internal-autofill-selected {
+    -webkit-text-fill-color: inherit;
+    box-shadow: 0 0 0 1000px white inset;
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    /*
+        Using absolute paths to stop duplicating of font files when building app.
+        If not, then ng build will duplicate font files with unique postfix everytime,
+        update the urls with the new file paths, and create those new files in
+        root folder, hence rendering font files in 'assets' folder useless.
+    */
+    src: url(/assets/fonts/MaterialIcons.eot);
+    /* For IE6-8 */
+    src: local('Material Icons'),
+        local('MaterialIcons'),
+        url(/assets/fonts/MaterialIcons.woff2) format('woff2'),
+        url(/assets/fonts/MaterialIcons.woff) format('woff'),
+        url(/assets/fonts/MaterialIcons.ttf) format('truetype');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+
+// utility classes
+.horizontal-space {
+    display: inline-flex;
+    padding-right: 0.5rem;
+
+    &2 {
+        padding-right: 1rem;
+    }
+}
+
+.vertical-space {
+    display: inline-flex;
+    padding-bottom: 0.5rem;
+
+    &2 {
+        padding-bottom: 1rem;
+    }
+}
+
+.remaining-space {
+    flex: 1;
+}
+
+// no bottom spacing for mat-form-field elements
+.no-mat-form-field-bottom {
+    .mat-form-field {
+        &-underline {
+            bottom: 0;
+        }
+
+        &-wrapper {
+            padding-bottom: 0;
+        }
+    }
+}
+
+.no-mat-form-field-top {
+    .mat-form-field {
+        &-infix {
+            border-top: 0;
+        }
+    }
+}
+
+
+/* effects */
+.ripple-element {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.ink {
+    display: block;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 100%;
+    transform: scale(0);
+}
+
+.animate {
+    animation: ripple 0.65s linear;
+}
+
+@keyframes ripple {
+    100% {
+        opacity: 0;
+        transform: scale(2.5);
+    }
+}
+
+
+/* customizing ag-grid style */
+.ag-theme-material {
+    font-size: 1rem;
+
+    .ag-header {
+        font-size: 1rem;
+        border-bottom: 0;
+    }
+
+    .ag-header-cell-label {
+        width: 100%;
+
+        .ag-header-icon {
+            margin-left: auto;
+        }
+    }
+
+    .ag-header-cell,
+    .ag-header-group-cell {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .ag-cell {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .ag-overlay {
+        pointer-events: all;
+    }
+
+    .ag-overlay-panel {
+        display: flex;
+    }
+
+    .ag-overlay-no-rows-wrapper,
+    .ag-overlay-loading-wrapper {
+        flex: 1;
+        display: flex;
+    }
+
+    .ag-overlay-loading-wrapper {
+        background-color: rgba(255, 255, 255, 0.6);
+    }
+
+    .ag-header-container {
+        border-bottom: 1px solid rgba(0,0,0,0.3);
+        margin: auto;
+    }
+
+    .ag-center-cols-container {
+        margin: auto;
+    }
+}
+
+
+/* customizing ngb-pagination style */
+.pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 0;
+
+    .page-item {
+
+        &:first-child .page-link {
+            border-top-left-radius: 50px;
+            border-bottom-left-radius: 50px;
+        }
+
+        &:last-child .page-link {
+            border-top-right-radius: 50px;
+            border-bottom-right-radius: 50px;
+        }
+
+        &.active .page-link {
+            z-index: initial;
+        }
+    }
+}
+
+
+/* customizing ng-select details-table-length style */
+.ng-select.details-table-length {
+    min-width: 4rem;
+
+    .ng-select-container {
+        border-radius: 17px;
+    }
+
+    .ng-arrow-wrapper {
+        padding-left: 10px;
+    }
+}
+
+
+// custom separator
+.line-separator {
+    display: block;
+    margin-bottom: 1.25rem;
+}
+
+
+// sidenav component
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+    &.dark-backdrop {
+        background: rgba(0,0,0,.32);
+    }
+}
